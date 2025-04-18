@@ -2,8 +2,11 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Planilha Inteligente</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IA-PLANILHA</title>
+  
+  <!-- Estilo -->
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -110,7 +113,7 @@
 </head>
 <body>
 
-  <!-- Login Form -->
+  <!-- Login -->
   <div class="login-container" id="loginForm">
     <h2>Login</h2>
     <input type="text" id="username" placeholder="Usuário" />
@@ -119,12 +122,12 @@
     <div class="error-msg" id="errorMsg"></div>
   </div>
 
-  <!-- Boas-Vindas após o login -->
+  <!-- Mensagem de boas-vindas -->
   <div class="welcome-msg" id="welcomeContainer" style="display: none;">
     <p>Seja Bem-Vindo à Planilha Inteligente com IA em 5D!</p>
   </div>
 
-  <!-- Planilha Inteligente -->
+  <!-- Tabela -->
   <div class="table-container" id="tableContainer">
     <h1>Planilha Inteligente de Precificação com IA</h1>
     <table id="priceTable">
@@ -149,8 +152,8 @@
           <td><input type="number" step="0.01" class="frete" /></td>
           <td><input type="number" step="0.01" class="preco-venda" /></td>
           <td><input type="date" /></td>
-          <td><input type="text" class="valor-total" readonly="" /></td>
-          <td><input type="text" class="lucro" readonly="" /></td>
+          <td><input type="text" class="valor-total" readonly /></td>
+          <td><input type="text" class="lucro" readonly /></td>
           <td><div class="ia-msg"></div></td>
         </tr>
       </tbody>
@@ -186,8 +189,6 @@
       row.querySelector('.lucro').value = lucro.toFixed(2);
 
       const iaMsg = row.querySelector('.ia-msg');
-      if (!iaMsg) return;
-
       if (lucro < 0) {
         iaMsg.innerText = "⚠️ Alerta: Prejuízo! Reavalie o preço de venda.";
         iaMsg.style.color = '#b00020';
@@ -212,3 +213,19 @@
       const tbody = document.querySelector('#priceTable tbody');
       const novaLinha = document.createElement('tr');
       novaLinha.innerHTML = `
+        <td><input type="text" placeholder="Nome do Produto" /></td>
+        <td><input type="number" step="0.01" class="preco-compra" /></td>
+        <td><input type="number" step="0.01" class="imposto" /></td>
+        <td><input type="number" step="0.01" class="frete" /></td>
+        <td><input type="number" step="0.01" class="preco-venda" /></td>
+        <td><input type="date" /></td>
+        <td><input type="text" class="valor-total" readonly /></td>
+        <td><input type="text" class="lucro" readonly /></td>
+        <td><div class="ia-msg"></div></td>
+      `;
+      aplicarEventos(novaLinha);
+      tbody.appendChild(novaLinha);
+    }
+  </script>
+</body>
+</html>
